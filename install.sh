@@ -21,12 +21,14 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>
 
+# Autostart
 mkdir /jffs/etc
 mkdir /jffs/etc/config
 cd /jffs/etc/config/ 
 echo -e "#!/bin/sh\nmount -o bind /jffs/opt /opt\nsource /opt/homeassistant/bin/activate\nhass --config /opt/ha/" >> hass.startup
 chmod 755 hass.startup
 
+# Installation
 mkdir /jffs/opt
 mount -o bind /jffs/opt /opt
 cd /opt

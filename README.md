@@ -9,4 +9,7 @@
 
 # Installation
     
-
+ - Copy install.sh to /jffs
+ - Run: chmod +x ./install.sh'
+ - Run: ./install.sh
+ - Reboot router 

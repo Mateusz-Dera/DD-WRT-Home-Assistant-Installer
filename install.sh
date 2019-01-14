@@ -23,24 +23,22 @@
 
 mkdir /jffs/etc
 mkdir /jffs/etc/config
-cd /jffs/etc/config/  
-echo -e "#!/bin/sh\nmkdir /jffs/test\nmount -o bind /jffs/opt /opt\nsource /opt/homeassistant/bin/activate\nhass --config /opt/ha/" > hass.startup
-chmod 755 ha.startup
+cd /jffs/etc/config/ 
+echo -e "#!/bin/sh\nmount -o bind /jffs/opt /opt\nsource /opt/homeassistant/bin/activate\nhass --config /opt/ha/" >> hass.startup
+chmod 755 hass.startup
 
-mkdir /jffs/opt 
+mkdir /jffs/opt
 mount -o bind /jffs/opt /opt
 cd /opt
-wget -O - http://pkg.entware.net/binaries/armv7/installer/entware_install.sh | /bin/sh 
+wget -O - http://pkg.entware.net/binaries/armv7/installer/entware_install.sh | /bin/sh
 opkg update
-opkg upgrade 
-opkg install nano 
-opkg install python3-dev 
-cd /opt
+opkg upgrade
+opkg install nano
+opkg install python3-dev
 python3 -m venv --without-pip homeassistant
-source homeassistant/bin/activate 
+source homeassistant/bin/activate
 curl -k https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 python3 /opt/get-pip.py && rm /opt/get-pip.py
+HOME=/opt/ha/ python3 -m pip install homeassistant==0.75.3
 pip3 install netifaces
 pip3 install warrant==0.6.1
-HOME=/opt/ha/ python3 -m pip install homeassistant==0.75.3
-hass --config /opt/ha/

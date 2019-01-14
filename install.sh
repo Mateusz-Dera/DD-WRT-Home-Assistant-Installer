@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # DD-WRT Home Assistant Installer
 # Copyright © 2019 Mateusz Dera
 
@@ -19,7 +21,14 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>
 
-mkdir /jffs/opt && mount -o bind /jffs/opt /opt
+mkdir /jffs/etc
+mkdir /jffs/etc/config
+cd /jffs/etc/config/  
+echo -e "#!/bin/sh\nmkdir /jffs/test\nmount -o bind /jffs/opt /opt\nsource /opt/homeassistant/bin/activate\nhass --config /opt/ha/" > hass.startup
+chmod 755 ha.startup
+
+mkdir /jffs/opt 
+mount -o bind /jffs/opt /opt
 cd /opt
 wget -O - http://pkg.entware.net/binaries/armv7/installer/entware_install.sh | /bin/sh 
 opkg update

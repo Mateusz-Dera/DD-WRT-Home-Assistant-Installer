@@ -13,3 +13,4 @@
 install.sh && ./install.sh
  - Remove install.sh
  - Reboot router
+ - Home Assistant will start after a few minutes.

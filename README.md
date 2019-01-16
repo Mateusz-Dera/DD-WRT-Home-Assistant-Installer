@@ -8,8 +8,6 @@
  - Optional SWAP partition
 
 # Installation
-    
- - Copy install.sh to /jffs
- - Run: chmod +x ./install.sh
- - Run: ./install.sh
- - Reboot router 
+ - Run: cd /jffs    
+ - curl -kLO https://raw.githubusercontent.com/Mateusz-Dera/DD-WRT-Home-Assistant-Installer/master/install.sh && chmod +x ./
+install.sh && ./install.sh

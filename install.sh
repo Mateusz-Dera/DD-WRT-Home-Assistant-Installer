@@ -41,6 +41,6 @@ python3 -m venv --without-pip homeassistant
 source homeassistant/bin/activate
 curl -k https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 python3 /opt/get-pip.py && rm /opt/get-pip.py
-HOME=/opt/ha/ python3 -m pip install homeassistant==0.75.3
-pip3 install netifaces
-pip3 install warrant==0.6.1
+python3 -m pip install netifaces
+python3 -m pip install warrant==0.6.1
+python3 -m pip install homeassistant==0.75.3

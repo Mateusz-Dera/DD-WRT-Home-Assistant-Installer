@@ -11,3 +11,5 @@
  - Run: cd /jffs    
  - curl -kLO https://raw.githubusercontent.com/Mateusz-Dera/DD-WRT-Home-Assistant-Installer/master/install.sh && chmod +x ./
 install.sh && ./install.sh
+ - Remove install.sh
+ - Reboot router

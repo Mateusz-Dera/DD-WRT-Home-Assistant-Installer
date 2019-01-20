@@ -12,4 +12,7 @@
  - Run: curl -kLO https://raw.githubusercontent.com/Mateusz-Dera/DD-WRT-Home-Assistant-Installer/master/install.sh && chmod +x ./install.sh && ./install.sh
  - Remove install.sh
  - Reboot router
- - Home Assistant will generate configuration files (This may take a moment) and start up after a few minutes
+ - Home Assistant will generate configuration files (this may take a moment) and start up after a few minutes
+ 
+# Configuration
+ - Configuration files path: /opt/homeassistant/config

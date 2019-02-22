@@ -43,4 +43,3 @@ python3 /opt/get-pip.py && rm /opt/get-pip.py
 mkdir /opt/homeassistant/config
 python3 -m pip install netifaces
 python3 -m pip install homeassistant==0.82.1
-hass --config /opt/homeassistant/config

@@ -1,6 +1,6 @@
 # DD-WRT Home Assistant Installer
 
-# (This is Beta version)
+# Beta version
   - This is the beta version, you can find the stable version here: https://github.com/Mateusz-Dera/DD-WRT-Home-Assistant-Installer/tree/0.75.3
 
 # Info

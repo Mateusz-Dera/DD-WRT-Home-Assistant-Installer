@@ -32,16 +32,15 @@ chmod 755 hass.startup
 mkdir /jffs/opt
 mount -o bind /jffs/opt /opt
 cd /opt
-wget -O - http://pkg.entware.net/binaries/armv7/installer/entware_install.sh | /bin/sh
-opkg update
-opkg upgrade
-opkg install nano
-opkg install python3-dev
+wget -O - http://ipkg.nslu2-linux.org/optware-ng/bootstrap/buildroot-armeabi-ng-bootstrap.sh | sh
+export PATH=$PATH:/opt/bin:/opt/sbin
+/opt/bin/ipkg update
+/opt/bin/ipkg install nano busybox gcc python3 python3-dev openssl-dev
 python3 -m venv --without-pip homeassistant
 source homeassistant/bin/activate
 curl -k https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 python3 /opt/get-pip.py && rm /opt/get-pip.py
-python3 -m pip install netifaces
-python3 -m pip install warrant==0.6.1
-python3 -m pip install homeassistant==0.75.3
 mkdir /opt/homeassistant/config
+python3 -m pip install netifaces
+python3 -m pip install homeassistant==0.82.1
+hass --config /opt/homeassistant/config

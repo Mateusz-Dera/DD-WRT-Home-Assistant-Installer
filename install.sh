@@ -42,4 +42,6 @@ curl -k https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 python3 /opt/get-pip.py && rm /opt/get-pip.py
 mkdir /opt/homeassistant/config
 python3 -m pip install netifaces
-python3 -m pip install homeassistant==0.82.1
+python3 -m pip install warrant==0.6.1
+python3 -m pip install homeassistant==0.86.4
+hass --config /opt/homeassistant/config

@@ -1,7 +1,7 @@
 # DD-WRT Home Assistant Installer
 
-# Older Version
-  - Stable 0.75.3 version: https://github.com/Mateusz-Dera/DD-WRT-Home-Assistant-Installer/tree/0.75.3
+# Stable Version
+  - This is the beta version, you can find the stable version here: https://github.com/Mateusz-Dera/DD-WRT-Home-Assistant-Installer/tree/0.75.3
   
 # Info
   - Home Assistant 0.86.4

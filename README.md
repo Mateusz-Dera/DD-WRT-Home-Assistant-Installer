@@ -1,10 +1,10 @@
 # DD-WRT Home Assistant Installer
 
-# Beta version
-  - This is the beta version, you can find the stable version here: https://github.com/Mateusz-Dera/DD-WRT-Home-Assistant-Installer/tree/0.75.3
+# Older Version
+  - Stable 0.75.3 version here: https://github.com/Mateusz-Dera/DD-WRT-Home-Assistant-Installer/tree/0.75.3
 
 # Info
-  - Home Assistant 0.82.1
+  - Home Assistant 0.86.4
   - Tested on Netgear R6400v2 (DD-WRT v3.0-r37305)
 
 # USB Requirements

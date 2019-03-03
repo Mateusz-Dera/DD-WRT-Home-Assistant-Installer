@@ -25,7 +25,7 @@
 mkdir /jffs/etc
 mkdir /jffs/etc/config
 cd /jffs/etc/config/ 
-echo -e "#!/bin/sh\nmount -o bind /jffs/opt /opt\nsource /opt/homeassistant/bin/activate\nhass --config /opt/homeassistant/config" >> hass.startup
+echo -e "#!/bin/sh\nmount -o bind /jffs/opt /opt\nsource /opt/homeassistant/bin/activate\npython3 -c "import sqlite3"\nhass --config /opt/homeassistant/config" >> hass.startup
 chmod 755 hass.startup
 
 # Installation

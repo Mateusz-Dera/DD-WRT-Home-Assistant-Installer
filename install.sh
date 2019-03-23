@@ -35,7 +35,7 @@ cd /opt
 wget -O - http://ipkg.nslu2-linux.org/optware-ng/bootstrap/buildroot-armeabi-ng-bootstrap.sh | sh
 export PATH=$PATH:/opt/bin:/opt/sbin
 /opt/bin/ipkg update
-/opt/bin/ipkg install nano busybox gcc python3 python3-dev openssl-dev
+/opt/bin/ipkg install nano busybox gcc python3 openssl-dev libsodium
 python3 -m venv --without-pip homeassistant
 source homeassistant/bin/activate
 curl -k https://bootstrap.pypa.io/get-pip.py -o get-pip.py
@@ -43,4 +43,5 @@ python3 /opt/get-pip.py && rm /opt/get-pip.py
 mkdir /opt/homeassistant/config
 python3 -m pip install netifaces
 python3 -m pip install warrant==0.6.1
+SODIUM_INSTALL=system pip install pynacl
 python3 -m pip install homeassistant==0.89.2

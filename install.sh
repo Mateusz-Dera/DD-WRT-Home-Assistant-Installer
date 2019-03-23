@@ -26,7 +26,7 @@ mkdir /jffs/etc
 mkdir /jffs/etc/config
 cd /jffs/etc/config/ 
 echo -e "#!/bin/sh\nmount -o bind /jffs/opt /opt\nsource /opt/homeassistant/bin/activate\npython3 -c "import sqlite3"\nhass --config /opt/homeassistant/config" >> hass.startup
-chmod 755 hass.startup
+chmod 700 hass.startup
 
 # Installation
 mkdir /jffs/opt
@@ -44,4 +44,3 @@ mkdir /opt/homeassistant/config
 python3 -m pip install netifaces
 python3 -m pip install warrant==0.6.1
 python3 -m pip install homeassistant==0.89.2
-hass --config /opt/homeassistant/config

@@ -22,42 +22,49 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 # Optware-ng
+
+echo -e "\e[92;1;48;5;239m ===================================== \e[0m"
+echo -e "\e[92;1;48;5;240m |  DD-WRT HOME ASSISTANT INSTALLER  | \e[0m"
+echo -e "\e[92;1;48;5;241m |  \e[94;1;48;5;241mMateusz Dera  \e[92;1;48;5;241m                   | \e[0m"
+echo -e "\e[92;1;48;5;240m | \e[94;1;48;5;240m Version:\e[92;1;48;5;240m 1.0                     | \e[0m"
+echo -e "\e[92;1;48;5;239m ===================================== \e[0m"
+
 if ! [ -d "/jffs/opt" ]; then
    mkdir /jffs/.tmp || exit 1
 fi
-cd /jffs/.tmp || exit 2
-curl -kLO https://raw.githubusercontent.com/Mateusz-Dera/DD-WRT-Easy-Optware-ng-Installer/master/install.sh || exit 3
+cd /jffs/.tmp || exit 1
+curl -kLO https://raw.githubusercontent.com/Mateusz-Dera/DD-WRT-Easy-Optware-ng-Installer/master/install.sh || exit 1
 sh ./install.sh -s 
-/opt/bin/ipkg update || exit 4
-rm -R /jffs/.tmp || exit 5
+/opt/bin/ipkg update || exit 1
+rm -R /jffs/.tmp || exit 1
 
 # Install
-/opt/bin/ipkg install gcc || exit 6
-/opt/bin/ipkg install python3 || exit 7
-/opt/bin/ipkg install openssl-dev || exit 8
+/opt/bin/ipkg install gcc || exit 1
+/opt/bin/ipkg install python3 || exit 1
+/opt/bin/ipkg install openssl-dev || exit 1
 
 # Python
-python3 -m venv --without-pip homeassistant || exit 9
-source homeassistant/bin/activate || exit 10
-curl -k https://bootstrap.pypa.io/get-pip.py -o get-pip.py || exit 11
-python3 /opt/get-pip.py && rm /opt/get-pip.py || exit 12
-mkdir /opt/homeassistant/config || exit 13
-python3 -m pip install homeassistant==0.92.1 || exit 14
+python3 -m venv --without-pip homeassistant || exit 1
+source homeassistant/bin/activate || exit 1
+curl -k https://bootstrap.pypa.io/get-pip.py -o get-pip.py || exit 1
+python3 /opt/get-pip.py && rm /opt/get-pip.py || exit 1
+mkdir /opt/homeassistant/config || exit 1
+python3 -m pip install homeassistant==0.92.1 || exit 1
 
 # Autostart
-cd /jffs/etc/config/ || exit 15
+cd /jffs/etc/config/ || exit 1
 echo -e '#!/bin/sh\nmount -o bind /jffs/opt /opt\nsource /opt/homeassistant/bin/activate\npython3 -c "import sqlite3"\nhass --config /opt/homeassistant/config' >> hass.startup
-[ -f /jffs/etc/config/hass.startup ] || exit 16
-chmod 700 hass.startup || exit 17
+[ -f /jffs/etc/config/hass.startup ] || exit 1
+chmod 700 hass.startup || exit 1
 
 # Reboot
 case $1 in
-   "-s") exit;;
+   "-s") exit 0;;
    *) while true; do
        read -p $'Do you want to reboot your device? (y/n): ' yn
        case $yn in
            [Yy]* ) reboot;;
-           [Nn]* ) exit;;
+           [Nn]* ) exit 0;;
            * ) echo -e "Please answer \e[31myes \e[0mor \e[31mno\e[0m.";;
        esac
    done

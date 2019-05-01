@@ -25,12 +25,12 @@
 mkdir /jffs/etc
 mkdir /jffs/etc/config
 cd /jffs/etc/config/ 
-echo -e "#!/bin/sh\nmount -o bind /jffs/opt /opt\nsource /opt/homeassistant/bin/activate\npython3 -c "import sqlite3"\nhass --config /opt/homeassistant/config" >> hass.startup
+echo -e "#!/bin/sh\nmount -o bind /jffs/opt/ /opt/\nsource /opt/homeassistant/bin/activate\npython3 -c "import sqlite3"\nhass --config /opt/homeassistant/config" >> hass.startup
 chmod 700 hass.startup
 
 # Installation
 mkdir /jffs/opt
-mount -o bind /jffs/opt /opt
+mount -o bind /jffs/opt/ /opt/
 cd /opt
 wget -O - http://ipkg.nslu2-linux.org/optware-ng/bootstrap/buildroot-armeabi-ng-bootstrap.sh | sh
 export PATH=$PATH:/opt/bin:/opt/sbin

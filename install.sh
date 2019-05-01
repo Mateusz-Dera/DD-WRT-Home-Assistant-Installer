@@ -25,12 +25,12 @@
 mkdir /jffs/etc
 mkdir /jffs/etc/config
 cd /jffs/etc/config/ 
-echo -e "#!/bin/sh\nmount -o bind /jffs/opt /opt\nsource /opt/homeassistant/bin/activate\nhass --config /opt/homeassistant/config" >> hass.startup
+echo -e "#!/bin/sh\nmount -o bind /jffs/opt/ /opt/\nsource /opt/homeassistant/bin/activate\nhass --config /opt/homeassistant/config" >> hass.startup
 chmod 700 hass.startup
 
 # Installation
 mkdir /jffs/opt
-mount -o bind /jffs/opt /opt
+mount -o bind /jffs/opt/ /opt/
 cd /opt
 wget -O - http://pkg.entware.net/binaries/armv7/installer/entware_install.sh | /bin/sh
 opkg update

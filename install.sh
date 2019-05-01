@@ -22,7 +22,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 # Optware-ng
-mkdir /jffs/.tmp || exit 1
+if ! [ -d "/jffs/opt" ]; then
+   mkdir /jffs/.tmp || exit 1
+fi
 cd /jffs/.tmp || exit 2
 curl -kLO https://raw.githubusercontent.com/Mateusz-Dera/DD-WRT-Easy-Optware-ng-Installer/master/install.sh || exit 3
 sh ./install.sh -s || exit 4

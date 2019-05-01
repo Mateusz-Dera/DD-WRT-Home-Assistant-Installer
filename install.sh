@@ -21,28 +21,41 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>
 
-# Autostart
-mkdir /jffs/etc
-mkdir /jffs/etc/config
-cd /jffs/etc/config/ 
-echo -e "#!/bin/sh\nmount -o bind /jffs/opt /opt\nsource /opt/homeassistant/bin/activate\npython3 -c "import sqlite3"\nhass --config /opt/homeassistant/config" >> hass.startup
-chmod 700 hass.startup
+# Optware-ng
+mkdir /jffs/.tmp || exit 1
+cd /jffs/.tmp || exit 2
+curl -kLO https://raw.githubusercontent.com/Mateusz-Dera/DD-WRT-Easy-Optware-ng-Installer/master/install.sh || exit 3
+sh ./install.sh -s || exit 4
+rm -R /jffs/.tmp || exit 5
 
-# Installation
-mkdir /jffs/opt
-mount -o bind /jffs/opt /opt
-cd /opt
-wget -O - http://ipkg.nslu2-linux.org/optware-ng/bootstrap/buildroot-armeabi-ng-bootstrap.sh | sh
-export PATH=$PATH:/opt/bin:/opt/sbin
-/opt/bin/ipkg update
-/opt/bin/ipkg install nano busybox gcc python3 openssl-dev libsodium
-python3 -m venv --without-pip homeassistant
-source homeassistant/bin/activate
-curl -k https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-python3 /opt/get-pip.py && rm /opt/get-pip.py
-mkdir /opt/homeassistant/config
-python3 -m pip install netifaces
-python3 -m pip install warrant==0.6.1
-python3 -m pip install toonapilib==3.2.1
-SODIUM_INSTALL=system pip install pynacl
-python3 -m pip install homeassistant==0.89.2
+# Install
+/opt/bin/ipkg install gcc || exit 6
+/opt/bin/ipkg install python3 || exit 7
+/opt/bin/ipkg install openssl-dev || exit 8
+
+# Python
+python3 -m venv --without-pip homeassistant || exit 9
+source homeassistant/bin/activate || exit 10
+curl -k https://bootstrap.pypa.io/get-pip.py -o get-pip.py || exit 11
+python3 /opt/get-pip.py && rm /opt/get-pip.py || exit 12
+mkdir /opt/homeassistant/config || exit 13
+python3 -m pip install homeassistant==0.92.1 || exit 14
+
+# Autostart
+cd /jffs/etc/config/ || exit 15
+echo -e '#!/bin/sh\nmount -o bind /jffs/opt /opt\nsource /opt/homeassistant/bin/activate\npython3 -c "import sqlite3"\nhass --config /opt/homeassistant/config' >> hass.startup
+[ -f /jffs/etc/config/hass.startup ] || exit 16
+chmod 700 hass.startup || exit 17
+
+# Reboot
+case $1 in
+   "-s") exit 0 ;;
+   *) while true; do
+       read -p $'Do you want to reboot your device? (y/n): ' yn
+       case $yn in
+           [Yy]* ) reboot;;
+           [Nn]* ) exit 0;;
+           * ) echo -e "Please answer \e[31myes \e[0mor \e[31mno\e[0m.";;
+       esac
+   done
+esac

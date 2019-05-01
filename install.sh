@@ -38,6 +38,8 @@ sh ./install.sh -s
 /opt/bin/ipkg update || exit 1
 rm -R /jffs/.tmp || exit 1
 
+cd /jffs/opt || exit 1
+
 # Install
 /opt/bin/ipkg install gcc || exit 1
 /opt/bin/ipkg install python3 || exit 1

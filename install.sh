@@ -27,7 +27,8 @@ if ! [ -d "/jffs/opt" ]; then
 fi
 cd /jffs/.tmp || exit 2
 curl -kLO https://raw.githubusercontent.com/Mateusz-Dera/DD-WRT-Easy-Optware-ng-Installer/master/install.sh || exit 3
-sh ./install.sh -s || exit 4
+sh ./install.sh -s 
+/opt/bin/ipkg update || exit 4
 rm -R /jffs/.tmp || exit 5
 
 # Install

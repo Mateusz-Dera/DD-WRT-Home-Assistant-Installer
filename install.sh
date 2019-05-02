@@ -57,7 +57,7 @@ python3 -m pip install homeassistant==0.92.1 || exit 1
 cd /jffs/etc/config || exit 1
 [ -f ./hass.startup ] && rm hass.startup
 [ -f ./hass.startup ] && exit 1
-echo -e '#!/bin/sh\nmount -o bind /jffs/opt /opt\nsource /opt/homeassistant/bin/activate\npython3 -c "import sqlite3"\nhass --config /opt/homeassistant/config' >> hass.startup
+echo -e '#!/bin/sh\nmount -o bind /jffs/opt/ /opt/\nsource /opt/homeassistant/bin/activate\npython3 -c "import sqlite3"\nhass --config /opt/homeassistant/config' >> hass.startup
 [ -f ./hass.startup ] || exit 1
 chmod 700 hass.startup || exit 1
 

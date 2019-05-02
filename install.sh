@@ -26,7 +26,7 @@
 echo -e "\e[92;1;48;5;239m ===================================== \e[0m"
 echo -e "\e[92;1;48;5;240m |  DD-WRT HOME ASSISTANT INSTALLER  | \e[0m"
 echo -e "\e[92;1;48;5;241m |  \e[94;1;48;5;241mMateusz Dera  \e[92;1;48;5;241m                   | \e[0m"
-echo -e "\e[92;1;48;5;240m | \e[94;1;48;5;240m Version:\e[92;1;48;5;240m 1.0                     | \e[0m"
+echo -e "\e[92;1;48;5;240m | \e[94;1;48;5;240m Version:\e[92;1;48;5;240m 1.1                     | \e[0m"
 echo -e "\e[92;1;48;5;239m ===================================== \e[0m"
 
 if ! [ -d "/jffs/.tmp" ]; then
@@ -42,6 +42,8 @@ cd /jffs/opt || exit 1
 
 # Install
 /opt/bin/ipkg install gcc || exit 1
+/opt/bin/ipkg install make || exit 1
+/opt/bin/ipkg install busybox || exit 1
 /opt/bin/ipkg install python3 || exit 1
 /opt/bin/ipkg install openssl-dev || exit 1
 

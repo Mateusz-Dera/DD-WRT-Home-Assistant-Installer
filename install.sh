@@ -52,7 +52,11 @@ python3 -m venv --without-pip homeassistant || exit 1
 source homeassistant/bin/activate || exit 1
 curl -k https://bootstrap.pypa.io/get-pip.py -o get-pip.py || exit 1
 python3 /opt/get-pip.py && rm /opt/get-pip.py || exit 1
-mkdir /opt/homeassistant/config || exit 1
+
+if ! [ -d "/opt/homeassistant/config" ]; then
+   mkdir /opt/homeassistant/config || exit 1
+fi
+
 python3 -m pip install homeassistant==0.92.1 || exit 1
 
 # Autostart

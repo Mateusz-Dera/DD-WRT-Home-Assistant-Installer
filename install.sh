@@ -26,7 +26,7 @@
 echo -e "\e[92;1;48;5;239m ===================================== \e[0m"
 echo -e "\e[92;1;48;5;240m |  DD-WRT HOME ASSISTANT INSTALLER  | \e[0m"
 echo -e "\e[92;1;48;5;241m |  \e[94;1;48;5;241mMateusz Dera  \e[92;1;48;5;241m                   | \e[0m"
-echo -e "\e[92;1;48;5;240m | \e[94;1;48;5;240m Version:\e[92;1;48;5;240m 1.1                     | \e[0m"
+echo -e "\e[92;1;48;5;240m | \e[94;1;48;5;240m Version:\e[92;1;48;5;240m 1.2                     | \e[0m"
 echo -e "\e[92;1;48;5;239m ===================================== \e[0m"
 
 if ! [ -d "/jffs/.tmp" ]; then
@@ -57,6 +57,8 @@ if ! [ -d "/opt/homeassistant/config" ]; then
    mkdir /opt/homeassistant/config || exit 1
 fi
 
+python3 -m pip install PyNaCl==1.3.0 || exit 1
+python3 -m pip install hass-nabucasa==0.12
 python3 -m pip install homeassistant==0.92.1 || exit 1
 
 # Autostart

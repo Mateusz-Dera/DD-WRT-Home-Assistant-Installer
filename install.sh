@@ -68,3 +68,5 @@ cd /jffs/etc/config || exit 1
 echo -e '#!/bin/sh\nmount -o bind /jffs/opt/ /opt/\nsource /opt/homeassistant/bin/activate\npython3 -c "import sqlite3"\nhass --config /opt/homeassistant/config' >> hass.startup
 [ -f ./hass.startup ] || exit 1
 chmod 700 hass.startup || exit 1
+
+echo -e "Installation complete!\nRestart router"

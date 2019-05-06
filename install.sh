@@ -68,16 +68,3 @@ cd /jffs/etc/config || exit 1
 echo -e '#!/bin/sh\nmount -o bind /jffs/opt/ /opt/\nsource /opt/homeassistant/bin/activate\npython3 -c "import sqlite3"\nhass --config /opt/homeassistant/config' >> hass.startup
 [ -f ./hass.startup ] || exit 1
 chmod 700 hass.startup || exit 1
-
-# Reboot
-case $1 in
-   "-s") exit 0;;
-   *) while true; do
-       read -p $'Do you want to reboot your device? (y/n): ' yn
-       case $yn in
-           [Yy]* ) reboot;;
-           [Nn]* ) exit 0;;
-           * ) echo -e "Please answer \e[31myes \e[0mor \e[31mno\e[0m.";;
-       esac
-   done
-esac

@@ -16,7 +16,7 @@
 # Installation
  - Run: cd /jffs    
  - Run: curl -kLO https://raw.githubusercontent.com/Mateusz-Dera/DD-WRT-Home-Assistant-Installer/master/install.sh && sh ./install.sh
- - Reboot router
+ - Restart router
  - Home Assistant will generate configuration (it takes a lot of time) files and start up
  
 # Configuration

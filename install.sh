@@ -57,6 +57,7 @@ if ! [ -d "/opt/homeassistant/config" ]; then
    mkdir /opt/homeassistant/config || exit 1
 fi
 
+pip install --upgrade pip || exit 1
 python3 -m pip install PyNaCl==1.3.0 || exit 1
 python3 -m pip install hass-nabucasa==0.12
 python3 -m pip install homeassistant==0.92.1 || exit 1
